@@ -48,6 +48,11 @@ var sentences = ["There must be some kind of way outta here",
 //$(document).ready(function (){})
 //is the same as document.addEventListener.("DOMContentLoaded", function(){})
 $(document).ready(function () {
+    function shiftCheck(keydown,keyup){
+        if (keydown, keyCode===16);
+
+    }
+    //hide/show keyboard containers
     $("#keyboard-upper-container").hide();
     $(document).keydown(function (e) {
         if (e.which === 16) {
@@ -61,14 +66,20 @@ $(document).ready(function () {
             $("#keyboard-lower-container").show();
         }
     })
-    $(document).keypress(function(e){
-        $("#"+ e.which).css({'background-color':'#E6E6FA'});
+    //highlight keys when pressed
+    $(document).keypress(function (e) {
+        $("#" + e.which).css({ 'background-color': '#E6E6FA' });
+        
     })
-   // $(document).keyup(function(e){
-     //   $("#"+ e.which).css({'background-color':'transparent'});
-       // $("#"+ (e.which+32)).css({'background-color':'transparent'})
-        //console.dir(e);
-   // })
+    // return once key is released
+    $(document).keyup(function (e) {
+        if(e.shiftKey===true && e.which>=65 && e.which<=90|| e.which>=48 && e.which<=57){
+            $("#" + e.which).css({ 'background-color': '#f5f5f5' });
+        }
+        else if(e.which>=65 && e.which<=90){
+        $("#" + (e.which + 32)).css({ 'background-color': '#f5f5f5' });
+        }
+    })
 
 })
 //("#"+ e.which)
