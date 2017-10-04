@@ -27,30 +27,13 @@ var sentences = ["There must be some kind of way outta here",
     "Plowman dig my earth",
     "None were level on the mind",
     "Nobody up at his word",
-    "Hey, hey",
-    /*"No reason to get excited",
-    "The thief he kindly spoke",
-    "There are many here among us",
-    "Who feel that life is but a joke",
-    "But, uh, but you and I, we've been through that",
-    "And this is not our fate",
-    "So let us stop talkin' falsely now",
-    "The hour's getting late, hey",
-    "All along the watchtower",
-    "Princes kept the view",
-    "While all the women came and went",
-    "Barefoot servants, too",
-    "Outside in the cold distance", 
-    "A wildcat did growl",
-    "Two riders were approaching",
-    "And the wind began to howl",*/
-];
-//$(document).ready(function (){})
-//is the same as document.addEventListener.("DOMContentLoaded", function(){})
-$(document).ready(function () {
-    function shiftCheck(keydown,keyup){
-        if (keydown, keyCode===16);
+    "Hey, hey"];
+var sentenceCounter=0;
+var letterCounter=0;
 
+$(document).ready(function () {
+    function shiftCheck(keydown, keyup) {
+        if (keydown, keyCode === 16);
     }
     //hide/show keyboard containers
     $("#keyboard-upper-container").hide();
@@ -65,21 +48,16 @@ $(document).ready(function () {
             $("#keyboard-upper-container").hide();
             $("#keyboard-lower-container").show();
         }
+        if (e.shiftKey === true && (e.which >= 65 && e.which <= 90 || e.which >= 48 && e.which <= 57)) {
+            $("#" + e.which).css({ 'background-color': '#f5f5f5' });
+        }
+        else if (e.which >= 65 && e.which <= 90) {
+            $("#" + (e.which + 32)).css({ 'background-color': '#f5f5f5' });
+        }
     })
     //highlight keys when pressed
     $(document).keypress(function (e) {
         $("#" + e.which).css({ 'background-color': '#E6E6FA' });
-        
-    })
-    // return once key is released
-    $(document).keyup(function (e) {
-        if(e.shiftKey===true && e.which>=65 && e.which<=90|| e.which>=48 && e.which<=57){
-            $("#" + e.which).css({ 'background-color': '#f5f5f5' });
-        }
-        else if(e.which>=65 && e.which<=90){
-        $("#" + (e.which + 32)).css({ 'background-color': '#f5f5f5' });
-        }
-    })
 
+    }) 
 })
-//("#"+ e.which)
