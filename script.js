@@ -1,5 +1,5 @@
 /*
-1. Hide the shift keyboard on load
+1. Hide the shift keyboard on load (done)
  -Check if the shift key is pressed
  show if pressed. 
  hide if not pressed
@@ -19,7 +19,7 @@ inlcude in above
 12. if yes. reset the game. 
 13. go and party because you are done with this crazy lab.
  */
-var sentences = ["There must be some kind of way outta here",
+var lyrics = ["There must be some kind of way outta here",
     "said the joker to the theif",
     "there's too much confusion",
     "I can't get no relief",
@@ -28,8 +28,9 @@ var sentences = ["There must be some kind of way outta here",
     "None were level on the mind",
     "Nobody up at his word",
     "Hey, hey"];
-var sentenceCounter=0;
-var letterCounter=0;
+var lineCounter = 0;
+var letterCounter = 0;
+var newLine;
 
 $(document).ready(function () {
     function shiftCheck(keydown, keyup) {
@@ -48,16 +49,54 @@ $(document).ready(function () {
             $("#keyboard-upper-container").hide();
             $("#keyboard-lower-container").show();
         }
-        if (e.shiftKey === true && (e.which >= 65 && e.which <= 90 || e.which >= 48 && e.which <= 57)) {
+        if ((e.shiftKey === true && e.which >= 65 && e.which <= 90) || (e.which >= 48 && e.which <= 57)||(e.which===32)) {
             $("#" + e.which).css({ 'background-color': '#f5f5f5' });
         }
         else if (e.which >= 65 && e.which <= 90) {
             $("#" + (e.which + 32)).css({ 'background-color': '#f5f5f5' });
         }
+        console.log(e.which);
     })
     //highlight keys when pressed
     $(document).keypress(function (e) {
         $("#" + e.which).css({ 'background-color': '#E6E6FA' });
-
-    }) 
+    })
+    displayLyrics() 
+//$("#line").html(newLine);
 })
+//this is tyler's code because I suck and couldn't figure it out
+function displayLyrics(){
+    newLine= lyrics[lineCounter];
+    var splitLine= newLine.split("  ");
+    $("#line-container").empty();
+    splitLine.forEach(function(character, index){
+        $('#line-container').append(`<span id="letter-${index}">${character}</span>`);
+        
+    })
+
+}
+/*$(document).ready(function () {
+    shiftCheck()
+    $("#keyboard-upper-container").hide();
+    $(document).keydown(function(){
+    if (shiftCheck=true){
+    $("#keyboard-upper-container").show();
+    $("#keyboard-lower-container").hide();
+}
+else if (shiftCheck=false){
+    $("#keyboard-lower-container").show();
+    $("#keyboard-upper-container").hide();
+}
+})
+})
+function shiftCheck() {
+    $(document).keydown(function (e) {
+        var shiftCheck=false;
+        if (e.which === 16) {
+            console.log("true");
+            shiftCheck=true;
+        }
+        
+
+    })
+}*/
